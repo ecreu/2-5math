@@ -42,10 +42,54 @@
       --red: #d95b5b;
       --red-light: #fff0f0;
 
+      --progress-bg: #e7e9ed;
+      --answer-bg: #fafbfc;
+      --definition-bg: #f7f8fa;
+      --back-active: #eceef1;
+
       --shadow:
         0 4px 18px rgba(0, 0, 0, 0.05);
 
       --radius: 18px;
+    }
+
+
+    /* =====================================================
+       다크 모드
+    ===================================================== */
+
+    @media (prefers-color-scheme: dark) {
+
+      :root {
+        --bg: #101114;
+        --card: #181a1f;
+
+        --text: #f1f3f5;
+        --sub: #9a9fa8;
+
+        --border: #2a2d33;
+
+        --accent: #7188ff;
+        --accent-light: #20284a;
+
+        --green: #54c889;
+        --green-light: #183326;
+
+        --red: #ef7777;
+        --red-light: #351d1f;
+
+        --progress-bg: #2a2d33;
+        --answer-bg: #1d2025;
+        --definition-bg: #202328;
+        --back-active: #292c32;
+
+        --shadow:
+          0 4px 18px rgba(0, 0, 0, 0.22);
+      }
+
+      meta[name="theme-color"] {
+        color: #101114;
+      }
     }
 
 
@@ -71,6 +115,10 @@
         "Noto Sans KR",
         "Apple SD Gothic Neo",
         sans-serif;
+
+      transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
     }
 
     body {
@@ -90,7 +138,9 @@
     }
 
     button:focus-visible {
-      outline: 3px solid rgba(79, 109, 245, 0.25);
+      outline:
+        3px solid rgba(79, 109, 245, 0.25);
+
       outline-offset: 2px;
     }
 
@@ -227,13 +277,16 @@
 
       box-shadow: var(--shadow);
 
+      color: var(--text);
+
       text-align: left;
 
       cursor: pointer;
 
       transition:
         transform 0.12s ease,
-        box-shadow 0.12s ease;
+        box-shadow 0.12s ease,
+        background-color 0.2s ease;
     }
 
     .chapter-card:active {
@@ -350,7 +403,7 @@
     }
 
     .back-button:active {
-      background: #eceef1;
+      background: var(--back-active);
     }
 
     .sub-title {
@@ -430,13 +483,16 @@
 
       box-shadow: var(--shadow);
 
+      color: var(--text);
+
       text-align: left;
 
       cursor: pointer;
 
       transition:
         transform 0.12s ease,
-        box-shadow 0.12s ease;
+        box-shadow 0.12s ease,
+        background-color 0.2s ease;
     }
 
     .mode-button:active {
@@ -577,7 +633,7 @@
 
       border-radius: 999px;
 
-      background: #e7e9ed;
+      background: var(--progress-bg);
     }
 
     .progress-fill {
@@ -658,7 +714,7 @@
 
       border-radius: 14px;
 
-      background: #fafbfc;
+      background: var(--answer-bg);
 
       color: var(--text);
 
@@ -677,9 +733,9 @@
 
       border-radius: 14px;
 
-      background: #f7f8fa;
+      background: var(--definition-bg);
 
-      color: #3d4147;
+      color: var(--text);
 
       font-size: 15px;
 
@@ -874,10 +930,6 @@
 
 <body>
 
-  <!-- =====================================================
-       앱
-  ===================================================== -->
-
   <div id="app">
 
 
@@ -995,9 +1047,6 @@
 
           <div class="mode-list">
 
-
-            <!-- 암기 -->
-
             <button
               id="memorizeButton"
               class="mode-button"
@@ -1026,8 +1075,6 @@
 
             </button>
 
-
-            <!-- 문제 -->
 
             <button
               id="quizButton"
@@ -1610,7 +1657,7 @@
 
 
     /* =====================================================
-       DOM 가져오기
+       DOM
     ===================================================== */
 
     const $ = (id) => {
@@ -1668,8 +1715,6 @@
 
     /* =====================================================
        페이지 전환
-       
-       페이지를 변경하는 곳은 이 함수 하나로 통일
     ===================================================== */
 
     function showPage(pageName) {
@@ -1677,7 +1722,6 @@
       if (!pages[pageName]) {
         return;
       }
-
 
       Object.keys(pages).forEach(
         (key) => {
@@ -1690,9 +1734,7 @@
         }
       );
 
-
       state.currentPage = pageName;
-
 
       window.scrollTo(
         0,
@@ -1702,17 +1744,15 @@
 
 
     /* =====================================================
-       단원 목록 생성
+       단원 목록
     ===================================================== */
 
     function renderChapters() {
 
       chapterList.replaceChildren();
 
-
       chapterCount.textContent =
         `${chapters.length}개 단원`;
-
 
       chapters.forEach(
         (chapter) => {
@@ -1877,10 +1917,6 @@
       }
 
 
-      /*
-        원본 concepts 배열은 절대 수정하지 않는다.
-      */
-
       state.remainingCards =
         chapter.concepts.map(
           (card) => ({
@@ -1909,7 +1945,7 @@
 
 
     /* =====================================================
-       현재 카드 찾기
+       현재 카드
     ===================================================== */
 
     function getCurrentCard() {
@@ -1934,10 +1970,6 @@
 
     function renderCurrentCard() {
 
-      /*
-        남은 카드가 없다면 완료
-      */
-
       if (
         state.remainingCards.length === 0
       ) {
@@ -1947,12 +1979,6 @@
         return;
       }
 
-
-      /*
-        currentCardId가 없거나
-        현재 배열에 존재하지 않는 경우
-        첫 번째 카드를 사용
-      */
 
       let card =
         getCurrentCard();
@@ -1975,11 +2001,6 @@
       conceptName.textContent =
         card.name;
 
-
-      /*
-        innerHTML을 사용하지 않고
-        텍스트 노드로 구성
-      */
 
       definition.replaceChildren();
 
@@ -2039,19 +2060,10 @@
 
     function revealAnswer() {
 
-      /*
-        이미 공개된 경우
-        중복 클릭을 무시
-      */
-
       if (state.revealed) {
         return;
       }
 
-
-      /*
-        카드가 없는 경우 방어
-      */
 
       if (!getCurrentCard()) {
         return;
@@ -2101,11 +2113,6 @@
       }
 
 
-      /*
-        현재 카드를 배열의 뒤로 이동한다.
-        원본 concepts에는 영향을 주지 않는다.
-      */
-
       const [
         card
       ] =
@@ -2117,10 +2124,6 @@
 
       state.remainingCards.push(card);
 
-
-      /*
-        다음 카드로 이동
-      */
 
       state.currentCardId =
         state.remainingCards[0].id;
@@ -2162,28 +2165,16 @@
       }
 
 
-      /*
-        완료한 카드를 기록
-      */
-
       state.completedCardIds.add(
         currentId
       );
 
-
-      /*
-        현재 카드 제거
-      */
 
       state.remainingCards.splice(
         index,
         1
       );
 
-
-      /*
-        모든 카드 완료
-      */
 
       if (
         state.remainingCards.length === 0
@@ -2197,10 +2188,6 @@
         return;
       }
 
-
-      /*
-        다음 카드
-      */
 
       state.currentCardId =
         state.remainingCards[0].id;
@@ -2249,10 +2236,6 @@
         `${percent}%`;
 
 
-      /*
-        완료된 카드 수 + 현재 카드
-      */
-
       const currentNumber =
         Math.min(
           completed + 1,
@@ -2284,7 +2267,7 @@
 
 
     /* =====================================================
-       홈으로
+       홈
     ===================================================== */
 
     function goHome() {
@@ -2299,7 +2282,7 @@
 
 
     /* =====================================================
-       학습 방법으로
+       학습 방법
     ===================================================== */
 
     function goMode() {
@@ -2355,7 +2338,7 @@
 
 
     /* =====================================================
-       이벤트 연결
+       이벤트
     ===================================================== */
 
     $("modeBackButton")
@@ -2407,10 +2390,6 @@
       );
 
 
-    /*
-      문제 풀기는 아직 구현하지 않음.
-    */
-
     $("quizButton")
       .addEventListener(
         "click",
@@ -2435,11 +2414,6 @@
       showPage("home");
     }
 
-
-    /*
-      DOM이 이미 로드된 뒤 실행되는 구조이므로
-      DOMContentLoaded 중복 실행을 사용하지 않는다.
-    */
 
     init();
 
