@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <title>미적분 개념 테스트</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --background: #f7f8fa;
+      --surface: #ffffff;
+      --text: #17191c;
+      --sub-text: #73777d;
+      --border: #e8eaed;
+      --accent: #4f6df5;
+      --accent-light: #eef1ff;
+      --shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Pretendard",
+        "Noto Sans KR",
+        sans-serif;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .app {
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    /* =========================
+       Header
+    ========================= */
+
+    .header {
+      padding:
+        max(28px, env(safe-area-inset-top))
+        20px
+        20px;
+    }
+
+    .header-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 8vw, 40px);
+      line-height: 1.2;
+      letter-spacing: -0.04em;
+    }
+
+    .description {
+      margin: 12px 0 0;
+      color: var(--sub-text);
+      font-size: 15px;
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    /* =========================
+       Main
+    ========================= */
+
+    main {
+      padding: 4px 20px 40px;
+    }
+
+    .content {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 16px 0 12px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 750;
+      letter-spacing: -0.03em;
+    }
+
+    .chapter-count {
+      color: var(--sub-text);
+      font-size: 13px;
+    }
+
+    /* =========================
+       Chapter Cards
+    ========================= */
+
+    .chapter-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chapter-card {
+      width: 100%;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      text-align: left;
+      cursor: pointer;
+
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        border-color 0.15s ease;
+    }
+
+    .chapter-card:active {
+      transform: scale(0.985);
+      box-shadow: none;
+    }
+
+    @media (hover: hover) {
+      .chapter-card:hover {
+        transform: translateY(-2px);
+        border-color: #d8dcf0;
+        box-shadow: 0 7px 24px rgba(0, 0, 0, 0.07);
+      }
+    }
+
+    .chapter-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .chapter-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-width: 76px;
+      height: 28px;
+      padding: 0 10px;
+
+      border-radius: 8px;
+      background: var(--accent-light);
+      color: var(--accent);
+
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: 0.03em;
+    }
+
+    .arrow {
+      color: #a2a6ac;
+      font-size: 20px;
+      transition: transform 0.15s ease;
+    }
+
+    .chapter-card:hover .arrow {
+      transform: translateX(3px);
+    }
+
+    .chapter-title {
+      margin: 15px 0 6px;
+      font-size: 19px;
+      line-height: 1.35;
+      letter-spacing: -0.035em;
+    }
+
+    .chapter-description {
+      margin: 0;
+      color: var(--sub-text);
+      font-size: 14px;
+      line-height: 1.55;
+      word-break: keep-all;
+    }
+
+    .start-text {
+      display: block;
+      margin-top: 15px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* =========================
+       Empty / Loading
+    ========================= */
+
+    .empty {
+      padding: 40px 20px;
+      color: var(--sub-text);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    /* =========================
+       Desktop
+    ========================= */
+
+    @media (min-width: 768px) {
+      .header {
+        padding-top: 64px;
+        padding-bottom: 32px;
+      }
+
+      main {
+        padding-top: 8px;
+      }
+
+      .chapter-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .chapter-card {
+        min-height: 210px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+
+    <header class="header">
+      <div class="header-inner">
+        <p class="eyebrow">MATHEMATICS · CALCULUS I</p>
+
+        <h1>미적분 개념 테스트</h1>
+
+        <p class="description">
+          미적분Ⅰ의 핵심 개념을<br />
+          단원별로 확인해보세요.
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <div class="content">
+
+        <div class="section-header">
+          <h2 class="section-title">단원 선택</h2>
+          <span class="chapter-count" id="chapterCount"></span>
+        </div>
+
+        <section
+          class="chapter-list"
+          id="chapterList"
+          aria-label="미적분 단원 목록"
+        ></section>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    /*
+      ========================================
+      단원 데이터
+      ========================================
+
+      나중에 실제 문제를 추가할 때
+      이 부분에 questions 배열을 추가하면 됨.
+    */
+
+    const chapters = [
+      {
+        id: 1,
+        title: "함수의 극한과 연속",
+        description: "함수의 극한과 연속에 관한 핵심 개념을 확인합니다.",
+        questions: []
+      },
+
+      {
+        id: 2,
+        title: "미분",
+        description: "미분계수와 도함수, 미분법의 기본 개념을 확인합니다.",
+        questions: []
+      },
+
+      {
+        id: 3,
+        title: "적분",
+        description: "부정적분과 정적분, 적분의 기본 개념을 확인합니다.",
+        questions: []
+      }
+    ];
+
+
+    /*
+      ========================================
+      DOM
+      ========================================
+    */
+
+    const chapterList = document.getElementById("chapterList");
+    const chapterCount = document.getElementById("chapterCount");
+
+
+    /*
+      ========================================
+      단원 카드 생성
+      ========================================
+    */
+
+    function renderChapters() {
+
+      chapterList.innerHTML = "";
+
+      chapterCount.textContent =
+        `${chapters.length}개 단원`;
+
+      chapters.forEach((chapter, index) => {
+
+        const card = document.createElement("button");
+
+        card.type = "button";
+        card.className = "chapter-card";
+
+        card.innerHTML = `
+          <div class="chapter-top">
+            <span class="chapter-number">
+              CHAPTER ${String(index + 1).padStart(2, "0")}
+            </span>
+
+            <span class="arrow" aria-hidden="true">
+              →
+            </span>
+          </div>
+
+          <h3 class="chapter-title">
+            ${chapter.title}
+          </h3>
+
+          <p class="chapter-description">
+            ${chapter.description}
+          </p>
+
+          <span class="start-text">
+            문제 풀기 →
+          </span>
+        `;
+
+        /*
+          현재는 실제 퀴즈가 없으므로
+          클릭하면 추후 기능을 넣을 자리.
+        */
+
+        card.addEventListener("click", () => {
+          handleChapterClick(chapter);
+        });
+
+        chapterList.appendChild(card);
+      });
+    }
+
+
+    /*
+      ========================================
+      단원 클릭
+      ========================================
+    */
+
+    function handleChapterClick(chapter) {
+
+      // 현재는 문제 풀이 기능을 구현하지 않음.
+
+      console.log("선택한 단원:", chapter);
+
+      alert(
+        `${chapter.title}\n\n문제 풀이 기능은 다음 단계에서 추가됩니다.`
+      );
+    }
+
+
+    /*
+      ========================================
+      초기 실행
+      ========================================
+    */
+
+    renderChapters();
+  </script>
+</body>
+</html>
