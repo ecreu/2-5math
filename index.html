@@ -20,12 +20,16 @@
       --text: #17191c;
       --sub-text: #73777d;
       --border: #e7e9ed;
+
       --accent: #4f6df5;
       --accent-light: #eef1ff;
+
       --success: #2e9b62;
       --success-light: #eaf8f0;
+
       --danger: #d95b5b;
       --danger-light: #fff0f0;
+
       --shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
     }
 
@@ -35,6 +39,1819 @@
       padding: 0;
       min-height: 100%;
     }
+
+    body {
+      background: var(--background);
+      color: var(--text);
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Pretendard",
+        "Noto Sans KR",
+        sans-serif;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    button:focus-visible {
+      outline: 3px solid rgba(79, 109, 245, 0.25);
+      outline-offset: 2px;
+    }
+
+    .app {
+      min-height: 100vh;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+
+    /* =================================
+       메인 화면
+    ================================= */
+
+    .header {
+      padding:
+        max(28px, env(safe-area-inset-top))
+        20px
+        20px;
+    }
+
+    .header-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+
+      color: var(--accent);
+
+      font-size: 13px;
+      font-weight: 750;
+
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      margin: 0;
+
+      font-size: clamp(28px, 8vw, 40px);
+      line-height: 1.2;
+
+      letter-spacing: -0.045em;
+    }
+
+    .description {
+      margin: 12px 0 0;
+
+      color: var(--sub-text);
+
+      font-size: 15px;
+      line-height: 1.6;
+
+      word-break: keep-all;
+    }
+
+    main {
+      padding-bottom: 40px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin: 16px 0 12px;
+    }
+
+    .section-title {
+      margin: 0;
+
+      font-size: 18px;
+      font-weight: 750;
+
+      letter-spacing: -0.03em;
+    }
+
+    .chapter-count {
+      color: var(--sub-text);
+      font-size: 13px;
+    }
+
+    .chapter-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chapter-card {
+      width: 100%;
+
+      padding: 20px;
+
+      border: 1px solid var(--border);
+      border-radius: 18px;
+
+      background: var(--surface);
+      box-shadow: var(--shadow);
+
+      text-align: left;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        border-color 0.15s ease;
+    }
+
+    .chapter-card:active {
+      transform: scale(0.985);
+      box-shadow: none;
+    }
+
+    @media (hover: hover) {
+      .chapter-card:hover {
+        transform: translateY(-2px);
+
+        border-color: #d8dcf0;
+
+        box-shadow:
+          0 7px 24px rgba(0, 0, 0, 0.07);
+      }
+    }
+
+    .chapter-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .chapter-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-width: 76px;
+      height: 28px;
+
+      padding: 0 10px;
+
+      border-radius: 8px;
+
+      background: var(--accent-light);
+      color: var(--accent);
+
+      font-size: 12px;
+      font-weight: 750;
+
+      letter-spacing: 0.03em;
+    }
+
+    .arrow {
+      color: #a2a6ac;
+      font-size: 20px;
+    }
+
+    .chapter-title {
+      margin: 15px 0 6px;
+
+      font-size: 19px;
+      line-height: 1.35;
+
+      letter-spacing: -0.035em;
+    }
+
+    .chapter-description {
+      margin: 0;
+
+      color: var(--sub-text);
+
+      font-size: 14px;
+      line-height: 1.55;
+
+      word-break: keep-all;
+    }
+
+    .chapter-progress {
+      margin-top: 15px;
+
+      color: var(--sub-text);
+
+      font-size: 12px;
+    }
+
+
+    /* =================================
+       학습 방법 선택
+    ================================= */
+
+    .sub-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      padding:
+        max(18px, env(safe-area-inset-top))
+        20px
+        12px;
+    }
+
+    .back-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 40px;
+      height: 40px;
+
+      border: 0;
+      border-radius: 12px;
+
+      background: transparent;
+
+      color: var(--text);
+
+      font-size: 22px;
+
+      cursor: pointer;
+    }
+
+    .back-button:active {
+      background: #eceef1;
+    }
+
+    .sub-title {
+      margin: 0;
+
+      font-size: 18px;
+      font-weight: 750;
+
+      letter-spacing: -0.035em;
+    }
+
+    .mode-content {
+      padding-top: 18px;
+    }
+
+    .mode-intro {
+      margin-bottom: 20px;
+    }
+
+    .mode-chapter {
+      margin: 0 0 7px;
+
+      color: var(--accent);
+
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .mode-heading {
+      margin: 0;
+
+      font-size: 27px;
+      line-height: 1.3;
+
+      letter-spacing: -0.045em;
+    }
+
+    .mode-description {
+      margin: 10px 0 0;
+
+      color: var(--sub-text);
+
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .mode-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+
+    /* 학습 방법 카드 */
+
+    .mode-button {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      width: 100%;
+
+      padding: 20px;
+
+      border: 1px solid var(--border);
+      border-radius: 18px;
+
+      background: var(--surface);
+      box-shadow: var(--shadow);
+
+      text-align: left;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+
+    .mode-button:active {
+      transform: scale(0.985);
+      box-shadow: none;
+    }
+
+    .mode-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      flex: 0 0 48px;
+
+      width: 48px;
+      height: 48px;
+
+      border-radius: 14px;
+
+      background: var(--accent-light);
+      color: var(--accent);
+
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+
+    /*
+      ★ 여기 수정됨 ★
+
+      제목과 설명을 세로 방향으로 배치
+    */
+
+    .mode-text {
+      flex: 1;
+      min-width: 0;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      gap: 5px;
+    }
+
+    .mode-title {
+      display: block;
+
+      margin: 0;
+
+      font-size: 17px;
+      font-weight: 750;
+      line-height: 1.3;
+
+      letter-spacing: -0.03em;
+    }
+
+    .mode-detail {
+      display: block;
+
+      margin: 0;
+
+      color: var(--sub-text);
+
+      font-size: 13px;
+      line-height: 1.45;
+
+      word-break: keep-all;
+    }
+
+    .mode-arrow {
+      flex: 0 0 auto;
+
+      color: #a2a6ac;
+
+      font-size: 19px;
+    }
+
+    .mode-button.disabled {
+      opacity: 0.55;
+      cursor: default;
+    }
+
+
+    /* =================================
+       암기 화면
+    ================================= */
+
+    .memorize-page {
+      background: var(--background);
+    }
+
+    .memorize-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding:
+        max(16px, env(safe-area-inset-top))
+        20px
+        12px;
+    }
+
+    .memorize-back {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 40px;
+      height: 40px;
+
+      border: 0;
+      border-radius: 12px;
+
+      background: transparent;
+
+      font-size: 22px;
+
+      cursor: pointer;
+    }
+
+    .memorize-count {
+      color: var(--sub-text);
+
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .memorize-content {
+      padding-top: 14px;
+    }
+
+    .progress-area {
+      margin-bottom: 18px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+
+      margin-bottom: 8px;
+
+      color: var(--sub-text);
+
+      font-size: 12px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+
+      overflow: hidden;
+
+      border-radius: 999px;
+
+      background: #e7e9ed;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0;
+
+      border-radius: inherit;
+
+      background: var(--accent);
+
+      transition: width 0.25s ease;
+    }
+
+
+    /* =================================
+       암기 카드
+    ================================= */
+
+    .flashcard {
+      width: 100%;
+      min-height: 360px;
+
+      padding: 30px 22px;
+
+      border: 1px solid var(--border);
+      border-radius: 24px;
+
+      background: var(--surface);
+      box-shadow: var(--shadow);
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+    }
+
+    .card-label {
+      margin-bottom: 16px;
+
+      color: var(--sub-text);
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: 0.04em;
+    }
+
+    .concept-name {
+      margin: 0;
+
+      font-size: clamp(26px, 7vw, 34px);
+      line-height: 1.3;
+
+      letter-spacing: -0.045em;
+
+      word-break: keep-all;
+    }
+
+    .answer-area {
+      width: 100%;
+
+      margin-top: 28px;
+    }
+
+    .reveal-button {
+      width: 100%;
+      min-height: 58px;
+
+      border: 1px solid var(--border);
+      border-radius: 14px;
+
+      background: #fafbfc;
+
+      color: var(--text);
+
+      font-size: 15px;
+      font-weight: 650;
+
+      cursor: pointer;
+    }
+
+    .reveal-button:active {
+      background: #f0f2f4;
+    }
+
+    .definition {
+      display: none;
+
+      padding: 18px;
+
+      border-radius: 14px;
+
+      background: #f7f8fa;
+
+      color: #3d4147;
+
+      font-size: 15px;
+      line-height: 1.7;
+
+      text-align: left;
+
+      word-break: keep-all;
+    }
+
+    .definition.visible {
+      display: block;
+    }
+
+    .definition strong {
+      color: var(--text);
+    }
+
+
+    /* =================================
+       암기 완료 / 다시 학습
+    ================================= */
+
+    .result-buttons {
+      display: none;
+
+      gap: 10px;
+
+      width: 100%;
+
+      margin-top: 12px;
+    }
+
+    .result-buttons.visible {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .result-button {
+      min-height: 56px;
+
+      border-radius: 14px;
+
+      font-size: 14px;
+      font-weight: 750;
+
+      cursor: pointer;
+    }
+
+    .again-button {
+      border: 1px solid #f0caca;
+
+      background: var(--danger-light);
+
+      color: var(--danger);
+    }
+
+    .done-button {
+      border: 1px solid #bfe6cf;
+
+      background: var(--success-light);
+
+      color: var(--success);
+    }
+
+    .memorize-hint {
+      margin: 16px 0 0;
+
+      color: var(--sub-text);
+
+      font-size: 12px;
+      line-height: 1.5;
+
+      text-align: center;
+    }
+
+
+    /* =================================
+       완료 화면
+    ================================= */
+
+    .complete {
+      min-height: calc(100vh - 80px);
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      padding: 30px 20px;
+
+      text-align: center;
+    }
+
+    .complete-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 72px;
+      height: 72px;
+
+      margin-bottom: 20px;
+
+      border-radius: 50%;
+
+      background: var(--success-light);
+      color: var(--success);
+
+      font-size: 34px;
+      font-weight: 800;
+    }
+
+    .complete-title {
+      margin: 0;
+
+      font-size: 28px;
+
+      letter-spacing: -0.045em;
+    }
+
+    .complete-description {
+      margin: 10px 0 24px;
+
+      color: var(--sub-text);
+
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .complete-button {
+      width: 100%;
+      max-width: 360px;
+
+      min-height: 56px;
+
+      border: 0;
+      border-radius: 14px;
+
+      background: var(--accent);
+      color: white;
+
+      font-size: 15px;
+      font-weight: 750;
+
+      cursor: pointer;
+    }
+
+
+    /* =================================
+       PC
+    ================================= */
+
+    @media (min-width: 768px) {
+
+      .header {
+        padding-top: 64px;
+        padding-bottom: 32px;
+      }
+
+      .chapter-list {
+        display: grid;
+
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .chapter-card {
+        min-height: 210px;
+      }
+
+      .memorize-content {
+        max-width: 650px;
+        margin: 0 auto;
+      }
+
+      .flashcard {
+        min-height: 400px;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <div class="app">
+
+
+    <!-- =====================================
+         메인 화면
+    ====================================== -->
+
+    <section id="homePage" class="page">
+
+      <header class="header">
+
+        <div class="header-inner">
+
+          <p class="eyebrow">
+            MATHEMATICS · CALCULUS I
+          </p>
+
+          <h1>
+            미적분 개념 테스트
+          </h1>
+
+          <p class="description">
+            미적분Ⅰ의 핵심 개념을<br>
+            단원별로 공부하고 확인해보세요.
+          </p>
+
+        </div>
+
+      </header>
+
+
+      <main>
+
+        <div class="container">
+
+          <div class="section-header">
+
+            <h2 class="section-title">
+              단원 선택
+            </h2>
+
+            <span
+              id="chapterCount"
+              class="chapter-count"
+            ></span>
+
+          </div>
+
+
+          <section
+            id="chapterList"
+            class="chapter-list"
+            aria-label="단원 목록"
+          ></section>
+
+        </div>
+
+      </main>
+
+    </section>
+
+
+    <!-- =====================================
+         학습 방법 선택
+    ====================================== -->
+
+    <section
+      id="modePage"
+      class="page hidden"
+    >
+
+      <header class="sub-header">
+
+        <button
+          id="modeBackButton"
+          class="back-button"
+          type="button"
+          aria-label="뒤로가기"
+        >
+          ←
+        </button>
+
+        <h2 class="sub-title">
+          학습 방법
+        </h2>
+
+      </header>
+
+
+      <main>
+
+        <div class="container mode-content">
+
+          <div class="mode-intro">
+
+            <p
+              id="modeChapter"
+              class="mode-chapter"
+            >
+              CHAPTER 01
+            </p>
+
+            <h1
+              id="modeHeading"
+              class="mode-heading"
+            >
+              함수의 극한과 연속
+            </h1>
+
+            <p
+              id="modeDescription"
+              class="mode-description"
+            >
+              핵심 개념을 먼저 익혀보세요.
+            </p>
+
+          </div>
+
+
+          <div class="mode-list">
+
+
+            <!-- 암기하기 -->
+
+            <button
+              id="memorizeButton"
+              class="mode-button"
+              type="button"
+            >
+
+              <span class="mode-icon">
+                A
+              </span>
+
+
+              <span class="mode-text">
+
+                <span class="mode-title">
+                  암기하기
+                </span>
+
+                <span class="mode-detail">
+                  주요 개념을 카드 형태로 학습합니다.
+                </span>
+
+              </span>
+
+
+              <span class="mode-arrow">
+                →
+              </span>
+
+            </button>
+
+
+            <!-- 문제 풀기 -->
+
+            <button
+              id="quizButton"
+              class="mode-button disabled"
+              type="button"
+            >
+
+              <span class="mode-icon">
+                ?
+              </span>
+
+
+              <span class="mode-text">
+
+                <span class="mode-title">
+                  문제 풀기
+                </span>
+
+                <span class="mode-detail">
+                  개념을 바탕으로 문제를 풀어봅니다.
+                </span>
+
+              </span>
+
+
+              <span class="mode-arrow">
+                →
+              </span>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </main>
+
+    </section>
+
+
+    <!-- =====================================
+         암기 화면
+    ====================================== -->
+
+    <section
+      id="memorizePage"
+      class="page memorize-page hidden"
+    >
+
+      <header class="memorize-header">
+
+        <button
+          id="memorizeBackButton"
+          class="memorize-back"
+          type="button"
+          aria-label="학습 방법으로 돌아가기"
+        >
+          ←
+        </button>
+
+
+        <span
+          id="memorizeCount"
+          class="memorize-count"
+        >
+          1 / 1
+        </span>
+
+      </header>
+
+
+      <main>
+
+        <div class="container memorize-content">
+
+
+          <!-- 진행률 -->
+
+          <div class="progress-area">
+
+            <div class="progress-info">
+
+              <span>
+                학습 진행률
+              </span>
+
+              <span id="progressPercent">
+                0%
+              </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+              <div
+                id="progressFill"
+                class="progress-fill"
+              ></div>
+
+            </div>
+
+          </div>
+
+
+          <!-- 플래시카드 -->
+
+          <div class="flashcard">
+
+            <span class="card-label">
+              핵심 개념
+            </span>
+
+
+            <h2
+              id="conceptName"
+              class="concept-name"
+            >
+              함수의 극한
+            </h2>
+
+
+            <div class="answer-area">
+
+              <button
+                id="revealButton"
+                class="reveal-button"
+                type="button"
+              >
+                뜻 확인하기
+              </button>
+
+
+              <div
+                id="definition"
+                class="definition"
+              ></div>
+
+
+              <div
+                id="resultButtons"
+                class="result-buttons"
+              >
+
+                <button
+                  id="againButton"
+                  class="result-button again-button"
+                  type="button"
+                >
+                  다시 학습
+                </button>
+
+
+                <button
+                  id="doneButton"
+                  class="result-button done-button"
+                  type="button"
+                >
+                  암기 완료
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <p class="memorize-hint">
+            먼저 개념의 뜻을 떠올려 본 뒤<br>
+            뜻을 확인하고 자신이 기억했는지 판단해보세요.
+          </p>
+
+        </div>
+
+      </main>
+
+    </section>
+
+
+    <!-- =====================================
+         암기 완료 화면
+    ====================================== -->
+
+    <section
+      id="completePage"
+      class="page hidden"
+    >
+
+      <div class="complete">
+
+        <div class="complete-icon">
+          ✓
+        </div>
+
+
+        <h1 class="complete-title">
+          암기 완료!
+        </h1>
+
+
+        <p class="complete-description">
+          이 단원의 모든 개념을<br>
+          암기 완료로 표시했습니다.
+        </p>
+
+
+        <button
+          id="completeBackButton"
+          class="complete-button"
+          type="button"
+        >
+          학습 방법으로 돌아가기
+        </button>
+
+      </div>
+
+    </section>
+
+  </div>
+
+
+  <script>
+
+    /* =========================================
+       단원 및 개념 데이터
+    ========================================= */
+
+    const chapters = [
+
+      {
+        id: 1,
+
+        title: "함수의 극한과 연속",
+
+        description:
+          "함수의 극한과 연속에 관한 핵심 개념을 학습합니다.",
+
+        concepts: [
+
+          {
+            id: 1,
+
+            name: "함수의 극한",
+
+            definition:
+              "함수 f(x)에서 x가 어떤 수 a에 한없이 가까워질 때, f(x)의 값이 일정한 값 L에 한없이 가까워진다면 L을 x가 a에 가까워질 때의 f(x)의 극한값이라고 한다."
+          },
+
+          {
+            id: 2,
+
+            name: "좌극한",
+
+            definition:
+              "x가 a보다 작은 쪽에서 a에 한없이 가까워질 때 함수 f(x)가 가까워지는 값을 x가 a로 접근할 때의 좌극한이라고 한다."
+          },
+
+          {
+            id: 3,
+
+            name: "우극한",
+
+            definition:
+              "x가 a보다 큰 쪽에서 a에 한없이 가까워질 때 함수 f(x)가 가까워지는 값을 x가 a로 접근할 때의 우극한이라고 한다."
+          },
+
+          {
+            id: 4,
+
+            name: "극한값의 존재",
+
+            definition:
+              "x가 a에 가까워질 때의 좌극한과 우극한이 서로 같을 때, 그 함수의 극한값이 존재한다고 한다."
+          },
+
+          {
+            id: 5,
+
+            name: "함수의 연속",
+
+            definition:
+              "함수 f(x)가 x=a에서 정의되어 있고, x가 a에 가까워질 때의 극한값이 존재하며 그 극한값이 f(a)와 같으면 f(x)는 x=a에서 연속이라고 한다."
+          },
+
+          {
+            id: 6,
+
+            name: "연속함수",
+
+            definition:
+              "정의역의 모든 점에서 연속인 함수를 연속함수라고 한다."
+          },
+
+          {
+            id: 7,
+
+            name: "중간값의 정리",
+
+            definition:
+              "닫힌 구간에서 연속인 함수는 양 끝점에서의 함수값 사이의 모든 값을 적어도 한 번은 갖는다."
+          }
+
+        ]
+      },
+
+
+      {
+        id: 2,
+
+        title: "미분",
+
+        description:
+          "미분계수와 도함수, 미분법의 기본 개념을 학습합니다.",
+
+        concepts: []
+      },
+
+
+      {
+        id: 3,
+
+        title: "적분",
+
+        description:
+          "부정적분과 정적분, 적분의 기본 개념을 학습합니다.",
+
+        concepts: []
+      }
+
+    ];
+
+
+    /* =========================================
+       상태
+    ========================================= */
+
+    let selectedChapter = null;
+
+    let studyCards = [];
+
+    let currentCardIndex = 0;
+
+    let completedCards = new Set();
+
+    let revealed = false;
+
+
+    /* =========================================
+       DOM
+    ========================================= */
+
+    const homePage =
+      document.getElementById("homePage");
+
+    const modePage =
+      document.getElementById("modePage");
+
+    const memorizePage =
+      document.getElementById("memorizePage");
+
+    const completePage =
+      document.getElementById("completePage");
+
+
+    const chapterList =
+      document.getElementById("chapterList");
+
+    const chapterCount =
+      document.getElementById("chapterCount");
+
+
+    const modeChapter =
+      document.getElementById("modeChapter");
+
+    const modeHeading =
+      document.getElementById("modeHeading");
+
+    const modeDescription =
+      document.getElementById("modeDescription");
+
+
+    const conceptName =
+      document.getElementById("conceptName");
+
+    const definition =
+      document.getElementById("definition");
+
+    const revealButton =
+      document.getElementById("revealButton");
+
+    const resultButtons =
+      document.getElementById("resultButtons");
+
+    const againButton =
+      document.getElementById("againButton");
+
+    const doneButton =
+      document.getElementById("doneButton");
+
+
+    const memorizeCount =
+      document.getElementById("memorizeCount");
+
+    const progressPercent =
+      document.getElementById("progressPercent");
+
+    const progressFill =
+      document.getElementById("progressFill");
+
+
+    /* =========================================
+       페이지 전환
+    ========================================= */
+
+    function showPage(page) {
+
+      homePage.classList.add("hidden");
+
+      modePage.classList.add("hidden");
+
+      memorizePage.classList.add("hidden");
+
+      completePage.classList.add("hidden");
+
+
+      page.classList.remove("hidden");
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "instant"
+      });
+    }
+
+
+    /* =========================================
+       메인 화면
+    ========================================= */
+
+    function renderChapters() {
+
+      chapterList.innerHTML = "";
+
+      chapterCount.textContent =
+        `${chapters.length}개 단원`;
+
+
+      chapters.forEach((chapter, index) => {
+
+        const card =
+          document.createElement("button");
+
+
+        card.type = "button";
+
+        card.className =
+          "chapter-card";
+
+
+        const conceptCount =
+          chapter.concepts.length;
+
+
+        card.innerHTML = `
+
+          <div class="chapter-top">
+
+            <span class="chapter-number">
+              CHAPTER ${String(index + 1).padStart(2, "0")}
+            </span>
+
+            <span class="arrow">
+              →
+            </span>
+
+          </div>
+
+
+          <h3 class="chapter-title">
+            ${chapter.title}
+          </h3>
+
+
+          <p class="chapter-description">
+            ${chapter.description}
+          </p>
+
+
+          <div class="chapter-progress">
+            ${
+              conceptCount > 0
+                ? `개념 ${conceptCount}개`
+                : "준비 중"
+            }
+          </div>
+
+        `;
+
+
+        card.addEventListener(
+          "click",
+          () => openChapter(chapter)
+        );
+
+
+        chapterList.appendChild(card);
+
+      });
+    }
+
+
+    /* =========================================
+       단원 선택
+    ========================================= */
+
+    function openChapter(chapter) {
+
+      selectedChapter = chapter;
+
+
+      modeChapter.textContent =
+        `CHAPTER ${String(chapter.id).padStart(2, "0")}`;
+
+
+      modeHeading.textContent =
+        chapter.title;
+
+
+      modeDescription.textContent =
+        chapter.description;
+
+
+      showPage(modePage);
+    }
+
+
+    /* =========================================
+       암기 시작
+    ========================================= */
+
+    function startMemorize() {
+
+      if (
+        !selectedChapter ||
+        selectedChapter.concepts.length === 0
+      ) {
+
+        alert(
+          "이 단원의 암기 자료가 아직 준비되지 않았습니다."
+        );
+
+        return;
+      }
+
+
+      studyCards =
+        [...selectedChapter.concepts];
+
+
+      currentCardIndex = 0;
+
+      completedCards =
+        new Set();
+
+      revealed = false;
+
+
+      showPage(memorizePage);
+
+      renderCard();
+    }
+
+
+    /* =========================================
+       카드 표시
+    ========================================= */
+
+    function renderCard() {
+
+      if (studyCards.length === 0) {
+
+        showComplete();
+
+        return;
+      }
+
+
+      const card =
+        studyCards[currentCardIndex];
+
+
+      conceptName.textContent =
+        card.name;
+
+
+      definition.innerHTML =
+        `<strong>${card.name}</strong><br><br>${card.definition}`;
+
+
+      definition.classList.remove(
+        "visible"
+      );
+
+
+      resultButtons.classList.remove(
+        "visible"
+      );
+
+
+      revealButton.style.display =
+        "block";
+
+
+      revealButton.textContent =
+        "뜻 확인하기";
+
+
+      revealed = false;
+
+
+      updateProgress();
+    }
+
+
+    /* =========================================
+       뜻 확인
+    ========================================= */
+
+    revealButton.addEventListener(
+      "click",
+      () => {
+
+        if (revealed) {
+          return;
+        }
+
+
+        revealed = true;
+
+
+        definition.classList.add(
+          "visible"
+        );
+
+
+        resultButtons.classList.add(
+          "visible"
+        );
+
+
+        revealButton.style.display =
+          "none";
+      }
+    );
+
+
+    /* =========================================
+       다시 학습
+    ========================================= */
+
+    againButton.addEventListener(
+      "click",
+      () => {
+
+        const card =
+          studyCards.splice(
+            currentCardIndex,
+            1
+          )[0];
+
+
+        studyCards.push(card);
+
+
+        if (
+          currentCardIndex >=
+          studyCards.length
+        ) {
+
+          currentCardIndex = 0;
+        }
+
+
+        revealed = false;
+
+
+        renderCard();
+      }
+    );
+
+
+    /* =========================================
+       암기 완료
+    ========================================= */
+
+    doneButton.addEventListener(
+      "click",
+      () => {
+
+        const currentCard =
+          studyCards[currentCardIndex];
+
+
+        completedCards.add(
+          currentCard.id
+        );
+
+
+        studyCards.splice(
+          currentCardIndex,
+          1
+        );
+
+
+        if (studyCards.length === 0) {
+
+          showComplete();
+
+          return;
+        }
+
+
+        if (
+          currentCardIndex >=
+          studyCards.length
+        ) {
+
+          currentCardIndex = 0;
+        }
+
+
+        revealed = false;
+
+
+        renderCard();
+      }
+    );
+
+
+    /* =========================================
+       진행률
+    ========================================= */
+
+    function updateProgress() {
+
+      const total =
+        selectedChapter.concepts.length;
+
+
+      const completed =
+        completedCards.size;
+
+
+      const percent =
+        Math.round(
+          (completed / total) * 100
+        );
+
+
+      progressPercent.textContent =
+        `${percent}%`;
+
+
+      progressFill.style.width =
+        `${percent}%`;
+
+
+      const currentCard =
+        studyCards[currentCardIndex];
+
+
+      const originalIndex =
+        selectedChapter.concepts.findIndex(
+          concept =>
+            concept.id === currentCard?.id
+        );
+
+
+      memorizeCount.textContent =
+        studyCards.length > 0
+          ? `${originalIndex + 1} / ${total}`
+          : `${total} / ${total}`;
+    }
+
+
+    /* =========================================
+       완료
+    ========================================= */
+
+    function showComplete() {
+
+      progressPercent.textContent =
+        "100%";
+
+
+      progressFill.style.width =
+        "100%";
+
+
+      showPage(completePage);
+    }
+
+
+    /* =========================================
+       뒤로가기
+    ========================================= */
+
+    document
+      .getElementById("modeBackButton")
+      .addEventListener(
+        "click",
+        () => {
+          showPage(homePage);
+        }
+      );
+
+
+    document
+      .getElementById("memorizeBackButton")
+      .addEventListener(
+        "click",
+        () => {
+          showPage(modePage);
+        }
+      );
+
+
+    document
+      .getElementById("completeBackButton")
+      .addEventListener(
+        "click",
+        () => {
+          showPage(modePage);
+        }
+      );
+
+
+    /* =========================================
+       암기 버튼
+    ========================================= */
+
+    document
+      .getElementById("memorizeButton")
+      .addEventListener(
+        "click",
+        startMemorize
+      );
+
+
+    /* =========================================
+       문제 풀기
+    ========================================= */
+
+    document
+      .getElementById("quizButton")
+      .addEventListener(
+        "click",
+        () => {
+
+          if (!selectedChapter) {
+            return;
+          }
+
+
+          alert(
+            "문제 생성 기능은 다음 단계에서 추가됩니다."
+          );
+
+        }
+      );
+
+
+    /* =========================================
+       실행
+    ========================================= */
+
+    renderChapters();
+
+  </script>
+
+</body>
+</html>    }
 
     body {
       background: var(--background);
