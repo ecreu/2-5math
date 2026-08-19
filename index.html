@@ -16,10 +16,6 @@
   <title>미적분 개념 테스트</title>
 
   <style>
-    /* =====================================================
-       기본 설정
-    ===================================================== */
-
     * {
       box-sizing: border-box;
     }
@@ -27,10 +23,8 @@
     :root {
       --bg: #f7f8fa;
       --card: #ffffff;
-
       --text: #17191c;
       --sub: #73777d;
-
       --border: #e7e9ed;
 
       --accent: #4f6df5;
@@ -42,9 +36,8 @@
       --red: #d95b5b;
       --red-light: #fff0f0;
 
+      --soft: #fafbfc;
       --progress-bg: #e7e9ed;
-      --answer-bg: #fafbfc;
-      --definition-bg: #f7f8fa;
       --back-active: #eceef1;
 
       --shadow:
@@ -53,49 +46,33 @@
       --radius: 18px;
     }
 
-
-    /* =====================================================
+    /* =========================
        다크 모드
-    ===================================================== */
+    ========================= */
 
-    @media (prefers-color-scheme: dark) {
+    body.dark {
+      --bg: #101114;
+      --card: #191b20;
+      --text: #f1f2f4;
+      --sub: #9b9fa8;
+      --border: #2b2e35;
 
-      :root {
-        --bg: #101114;
-        --card: #181a1f;
+      --accent: #7188ff;
+      --accent-light: #202846;
 
-        --text: #f1f3f5;
-        --sub: #9a9fa8;
+      --green: #55c98a;
+      --green-light: #193328;
 
-        --border: #2a2d33;
+      --red: #f07878;
+      --red-light: #382124;
 
-        --accent: #7188ff;
-        --accent-light: #20284a;
+      --soft: #202228;
+      --progress-bg: #2b2e35;
+      --back-active: #292c33;
 
-        --green: #54c889;
-        --green-light: #183326;
-
-        --red: #ef7777;
-        --red-light: #351d1f;
-
-        --progress-bg: #2a2d33;
-        --answer-bg: #1d2025;
-        --definition-bg: #202328;
-        --back-active: #292c32;
-
-        --shadow:
-          0 4px 18px rgba(0, 0, 0, 0.22);
-      }
-
-      meta[name="theme-color"] {
-        color: #101114;
-      }
+      --shadow:
+        0 4px 18px rgba(0, 0, 0, 0.22);
     }
-
-
-    /* =====================================================
-       전체
-    ===================================================== */
 
     html,
     body {
@@ -133,14 +110,11 @@
       -webkit-appearance: none;
 
       font: inherit;
-
       color: inherit;
     }
 
     button:focus-visible {
-      outline:
-        3px solid rgba(79, 109, 245, 0.25);
-
+      outline: 3px solid rgba(79, 109, 245, 0.25);
       outline-offset: 2px;
     }
 
@@ -148,10 +122,9 @@
       display: none !important;
     }
 
-
-    /* =====================================================
-       공통
-    ===================================================== */
+    /* =========================
+       전체
+    ========================= */
 
     .page {
       width: 100%;
@@ -168,10 +141,53 @@
       padding-right: 20px;
     }
 
+    /* =========================
+       다크모드 버튼
+    ========================= */
 
-    /* =====================================================
+    .theme-button {
+      position: fixed;
+
+      top: max(16px, env(safe-area-inset-top));
+      right: 20px;
+
+      z-index: 1000;
+
+      width: 42px;
+      height: 42px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0;
+
+      border: 1px solid var(--border);
+      border-radius: 50%;
+
+      background: var(--card);
+
+      color: var(--text);
+
+      box-shadow: var(--shadow);
+
+      font-size: 19px;
+
+      cursor: pointer;
+
+      transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.12s ease;
+    }
+
+    .theme-button:active {
+      transform: scale(0.92);
+    }
+
+    /* =========================
        메인 헤더
-    ===================================================== */
+    ========================= */
 
     .header {
       padding-top:
@@ -203,6 +219,8 @@
     .main-title {
       margin: 0;
 
+      padding-right: 50px;
+
       font-size:
         clamp(28px, 8vw, 40px);
 
@@ -226,10 +244,9 @@
       padding-bottom: 40px;
     }
 
-
-    /* =====================================================
+    /* =========================
        단원 선택
-    ===================================================== */
+    ========================= */
 
     .section-header {
       display: flex;
@@ -277,8 +294,6 @@
 
       box-shadow: var(--shadow);
 
-      color: var(--text);
-
       text-align: left;
 
       cursor: pointer;
@@ -286,7 +301,8 @@
       transition:
         transform 0.12s ease,
         box-shadow 0.12s ease,
-        background-color 0.2s ease;
+        background-color 0.2s ease,
+        border-color 0.2s ease;
     }
 
     .chapter-card:active {
@@ -359,10 +375,9 @@
       font-size: 12px;
     }
 
-
-    /* =====================================================
+    /* =========================
        서브 헤더
-    ===================================================== */
+    ========================= */
 
     .sub-header {
       display: flex;
@@ -415,10 +430,9 @@
       letter-spacing: -0.035em;
     }
 
-
-    /* =====================================================
+    /* =========================
        학습 방법
-    ===================================================== */
+    ========================= */
 
     .mode-content {
       padding-top: 18px;
@@ -483,8 +497,6 @@
 
       box-shadow: var(--shadow);
 
-      color: var(--text);
-
       text-align: left;
 
       cursor: pointer;
@@ -492,7 +504,8 @@
       transition:
         transform 0.12s ease,
         box-shadow 0.12s ease,
-        background-color 0.2s ease;
+        background-color 0.2s ease,
+        border-color 0.2s ease;
     }
 
     .mode-button:active {
@@ -579,10 +592,9 @@
       opacity: 0.55;
     }
 
-
-    /* =====================================================
+    /* =========================
        암기 화면
-    ===================================================== */
+    ========================= */
 
     .memorize-header {
       display: flex;
@@ -714,7 +726,7 @@
 
       border-radius: 14px;
 
-      background: var(--answer-bg);
+      background: var(--soft);
 
       color: var(--text);
 
@@ -733,7 +745,7 @@
 
       border-radius: 14px;
 
-      background: var(--definition-bg);
+      background: var(--soft);
 
       color: var(--text);
 
@@ -808,10 +820,9 @@
       text-align: center;
     }
 
-
-    /* =====================================================
+    /* =========================
        완료 화면
-    ===================================================== */
+    ========================= */
 
     .complete {
       min-height: 100vh;
@@ -890,10 +901,9 @@
       cursor: pointer;
     }
 
-
-    /* =====================================================
+    /* =========================
        PC
-    ===================================================== */
+    ========================= */
 
     @media (min-width: 768px) {
 
@@ -930,12 +940,23 @@
 
 <body>
 
+  <!-- 다크모드 버튼 -->
+  <button
+    id="themeButton"
+    class="theme-button"
+    type="button"
+    aria-label="다크 모드 전환"
+    title="다크 모드 전환"
+  >
+    ☾
+  </button>
+
+
   <div id="app">
 
-
-    <!-- ===================================================
+    <!-- =========================
          홈
-    ==================================================== -->
+    ========================= -->
 
     <section
       id="homePage"
@@ -994,9 +1015,9 @@
     </section>
 
 
-    <!-- ===================================================
+    <!-- =========================
          학습 방법
-    ==================================================== -->
+    ========================= -->
 
     <section
       id="modePage"
@@ -1113,9 +1134,9 @@
     </section>
 
 
-    <!-- ===================================================
+    <!-- =========================
          암기
-    ==================================================== -->
+    ========================= -->
 
     <section
       id="memorizePage"
@@ -1244,9 +1265,9 @@
     </section>
 
 
-    <!-- ===================================================
+    <!-- =========================
          완료
-    ==================================================== -->
+    ========================= -->
 
     <section
       id="completePage"
@@ -1285,6 +1306,89 @@
 
   <script>
     "use strict";
+
+
+    /* =====================================================
+       다크모드
+    ===================================================== */
+
+    const themeButton =
+      document.getElementById("themeButton");
+
+
+    function applyTheme(isDark) {
+
+      document.body.classList.toggle(
+        "dark",
+        isDark
+      );
+
+
+      themeButton.textContent =
+        isDark ? "☀" : "☾";
+
+
+      themeButton.setAttribute(
+        "aria-label",
+        isDark
+          ? "라이트 모드로 전환"
+          : "다크 모드로 전환"
+      );
+
+
+      themeButton.setAttribute(
+        "title",
+        isDark
+          ? "라이트 모드로 전환"
+          : "다크 모드로 전환"
+      );
+    }
+
+
+    function loadTheme() {
+
+      const savedTheme =
+        localStorage.getItem(
+          "calculus-theme"
+        );
+
+
+      /*
+        저장된 값이 dark면 다크모드.
+        처음 사용하는 경우 라이트모드.
+      */
+
+      applyTheme(
+        savedTheme === "dark"
+      );
+    }
+
+
+    function toggleTheme() {
+
+      const isDark =
+        !document.body.classList.contains(
+          "dark"
+        );
+
+
+      applyTheme(isDark);
+
+
+      localStorage.setItem(
+        "calculus-theme",
+        isDark ? "dark" : "light"
+      );
+    }
+
+
+    themeButton.addEventListener(
+      "click",
+      toggleTheme
+    );
+
+
+    loadTheme();
 
 
     /* =====================================================
@@ -1351,7 +1455,6 @@
           }
         ]
       },
-
 
       {
         id: 2,
@@ -1525,7 +1628,6 @@
         ]
       },
 
-
       {
         id: 3,
 
@@ -1657,7 +1759,7 @@
 
 
     /* =====================================================
-       DOM
+       DOM 가져오기
     ===================================================== */
 
     const $ = (id) => {
@@ -1744,7 +1846,7 @@
 
 
     /* =====================================================
-       단원 목록
+       단원 목록 생성
     ===================================================== */
 
     function renderChapters() {
@@ -1945,7 +2047,7 @@
 
 
     /* =====================================================
-       현재 카드
+       현재 카드 찾기
     ===================================================== */
 
     function getCurrentCard() {
@@ -2267,7 +2369,7 @@
 
 
     /* =====================================================
-       홈
+       홈으로
     ===================================================== */
 
     function goHome() {
@@ -2282,7 +2384,7 @@
 
 
     /* =====================================================
-       학습 방법
+       학습 방법으로
     ===================================================== */
 
     function goMode() {
@@ -2338,7 +2440,7 @@
 
 
     /* =====================================================
-       이벤트
+       이벤트 연결
     ===================================================== */
 
     $("modeBackButton")
