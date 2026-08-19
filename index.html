@@ -2230,4 +2230,220 @@
 
 
       const completed =
-        state.completed
+        state.completedCardIds.size;
+
+
+      const percent =
+        total > 0
+          ? Math.round(
+              (completed / total) * 100
+            )
+          : 0;
+
+
+      progressPercent.textContent =
+        `${percent}%`;
+
+
+      progressFill.style.width =
+        `${percent}%`;
+
+
+      /*
+        완료된 카드 수 + 현재 카드
+      */
+
+      const currentNumber =
+        Math.min(
+          completed + 1,
+          total
+        );
+
+
+      memorizeCount.textContent =
+        `${currentNumber} / ${total}`;
+    }
+
+
+    /* =====================================================
+       완료 화면
+    ===================================================== */
+
+    function showComplete() {
+
+      progressPercent.textContent =
+        "100%";
+
+
+      progressFill.style.width =
+        "100%";
+
+
+      showPage("complete");
+    }
+
+
+    /* =====================================================
+       홈으로
+    ===================================================== */
+
+    function goHome() {
+
+      resetMemorizeState();
+
+      state.selectedChapterId =
+        null;
+
+      showPage("home");
+    }
+
+
+    /* =====================================================
+       학습 방법으로
+    ===================================================== */
+
+    function goMode() {
+
+      resetMemorizeState();
+
+      const chapter =
+        getSelectedChapter();
+
+
+      if (!chapter) {
+
+        showPage("home");
+
+        return;
+      }
+
+
+      modeChapter.textContent =
+        `CHAPTER ${String(chapter.id).padStart(2, "0")}`;
+
+
+      modeHeading.textContent =
+        chapter.title;
+
+
+      modeDescription.textContent =
+        chapter.description;
+
+
+      showPage("mode");
+    }
+
+
+    /* =====================================================
+       암기 상태 초기화
+    ===================================================== */
+
+    function resetMemorizeState() {
+
+      state.remainingCards =
+        [];
+
+      state.currentCardId =
+        null;
+
+      state.completedCardIds =
+        new Set();
+
+      state.revealed =
+        false;
+    }
+
+
+    /* =====================================================
+       이벤트 연결
+    ===================================================== */
+
+    $("modeBackButton")
+      .addEventListener(
+        "click",
+        goHome
+      );
+
+
+    $("memorizeBackButton")
+      .addEventListener(
+        "click",
+        goMode
+      );
+
+
+    $("completeBackButton")
+      .addEventListener(
+        "click",
+        goMode
+      );
+
+
+    $("memorizeButton")
+      .addEventListener(
+        "click",
+        startMemorize
+      );
+
+
+    revealButton
+      .addEventListener(
+        "click",
+        revealAnswer
+      );
+
+
+    againButton
+      .addEventListener(
+        "click",
+        studyAgain
+      );
+
+
+    doneButton
+      .addEventListener(
+        "click",
+        markComplete
+      );
+
+
+    /*
+      문제 풀기는 아직 구현하지 않음.
+    */
+
+    $("quizButton")
+      .addEventListener(
+        "click",
+        () => {
+
+          alert(
+            "문제 풀기 기능은 다음 단계에서 추가할 예정입니다."
+          );
+
+        }
+      );
+
+
+    /* =====================================================
+       초기 실행
+    ===================================================== */
+
+    function init() {
+
+      renderChapters();
+
+      showPage("home");
+    }
+
+
+    /*
+      DOM이 이미 로드된 뒤 실행되는 구조이므로
+      DOMContentLoaded 중복 실행을 사용하지 않는다.
+    */
+
+    init();
+
+  </script>
+
+</body>
+</html>
